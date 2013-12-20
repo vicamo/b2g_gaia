@@ -86,7 +86,9 @@
     },
 
     launch: function awf_launch(config) {
+      dump("awf_launch: begin");
       if (config.url === window.location.href) {
+        dump("awf_launch: skip same url");
         return;
       }
       if (config.isActivity && config.inline) {
@@ -100,14 +102,18 @@
         return;
       } else if (!AppWindowManager.isRunning(config) &&
            config.origin !== HomescreenLauncher.origin) {
+        dump("awf_launch: new AppWindow");
         new AppWindow(config);
       } else if (config.origin == HomescreenLauncher.origin) {
+        dump("awf_launch: HomescreenLauncher");
         HomescreenLauncher.getHomescreen().ensure();
       }
       this.publish('launchapp', config);
+      dump("awf_launch: end");
     },
 
     publish: function awf_publish(event, detail) {
+      dump("awf_publish: " + JSON.stringify({name: event, detail: detail}));
       var evt = document.createEvent('CustomEvent');
       evt.initCustomEvent(event, true, false, detail);
       window.dispatchEvent(evt);

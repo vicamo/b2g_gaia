@@ -7,9 +7,11 @@ var CellBroadcastSystem = {
 
   init: function cbs_init() {
     var self = this;
-    if (navigator && navigator.mozCellBroadcast) {
-      navigator.mozCellBroadcast.onreceived = this.show.bind(this);
-    }
+    try {
+      if (navigator && navigator.mozCellBroadcast) {
+        navigator.mozCellBroadcast.onreceived = this.show.bind(this);
+      }
+    } catch(e) {}
 
     var settings = window.navigator.mozSettings;
     var req = settings.createLock().get(this._settingsKey);

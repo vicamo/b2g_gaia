@@ -14,7 +14,10 @@ var Voicemail = {
   tagPrefix: 'voicemailNotification:',
 
   init: function vm_init() {
-    var voicemail = window.navigator.mozVoicemail;
+    var voicemail;
+    try {
+      voicemail = window.navigator.mozVoicemail;
+    } catch(e) {}
     if (!voicemail) {
       return;
     }

@@ -115,7 +115,9 @@ var MessageManager = {
     // WORKAROUND for bug 958738. We can remove 'try\catch' block once this bug
     // is resolved
     try {
+      console.log("Gaia: begin calling getThreads");
       cursor = this._mozMobileMessage.getThreads();
+      console.log("Gaia: end calling getThreads");
     } catch(e) {
       console.error('Error occurred while retrieving threads: ' + e.name);
       end && end();
@@ -125,6 +127,7 @@ var MessageManager = {
     }
 
     cursor.onsuccess = function onsuccess() {
+      console.log("Gaia: getThreads cursor.onsuccess");
       if (this.result) {
         // Register all threads to the Threads object.
         Threads.set(this.result.id, this.result);

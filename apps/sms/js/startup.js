@@ -135,6 +135,7 @@ var Startup = {
   init: function() {
     var initUIApp = this._initUIApp.bind(this);
     window.addEventListener('DOMContentLoaded', function() {
+      console.log("== VICAMO == " + Date.now() + "== DOMContentLoaded ==");
       window.dispatchEvent(new CustomEvent('moz-chrome-dom-loaded'));
 
       if (!navigator.mozMobileMessage) {

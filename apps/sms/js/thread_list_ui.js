@@ -527,6 +527,7 @@ var ThreadListUI = {
 
       this.appendThread(thread);
       if (--firstPanelCount === 0) {
+        console.log("== VICAMO == " + Date.now() + "== --firstPanelCount = 0 ==");
         // dispatch visually-complete and content-interactive when rendered
         // threads could fill up the top of the visiable area
         firstViewDone();
@@ -540,6 +541,7 @@ var ThreadListUI = {
       /* We set the view as empty only if there's no threads and no drafts,
        * this is done to prevent races between renering threads and drafts. */
       this.finalizeRendering(!(hasThreads || Drafts.size));
+      console.log("== VICAMO == " + Date.now() + "== onThreadsRendered ==");
 
       if (firstPanelCount > 0) {
         // dispatch visually-complete and content-interactive when rendering
